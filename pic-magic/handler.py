@@ -35,4 +35,12 @@ def handle(req: bytes):
     format_ = chunk[92:100].split(b'\0',1)[0].decode('utf-8')
     source = chunk[101:133].split(b'\0',1)[0].decode('utf-8')
 
-    return json.dumps({"xattrs": {"run" : run, "subrun" : subrun, "telescope": telescope, "year": year, "month": month, "day" : day, "datatype" : datatype, "format": format_, "source" : source}})
+    return json.dumps({"json": 
+        {"magic": 
+            {
+                "run" : run, "subrun" : subrun, "telescope": telescope, 
+                "year": year, "month": month, "day" : day, "datatype" : datatype, 
+                "format": format_, "source" : source
+            }
+        }
+    })
